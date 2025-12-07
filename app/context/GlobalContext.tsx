@@ -15,7 +15,6 @@ export function GlobalProvider({ children }: { children: React.ReactNode }) {
     isShowBiosScreen: true,
     isLoading: false,
     isShowLoginScreen: false,
-    listOfBIOSTextToShow: [],
     
   });
 

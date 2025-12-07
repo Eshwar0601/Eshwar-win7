@@ -1,11 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import loginImage from '@/public/assets/images/windows-bg.jpg';
 import styles from './LoginScreen.module.css';
 import floweImg from '@/public/assets/images/flower.png';
 import windowsLogo from '@/public/assets/images/windows-7-logo.png'
 import shutDownButton from '@/public/assets/images/shutdown.png';
+import { useGlobal } from "@/app/context/GlobalContext";
+
 const LoginScreen = () => {
+  const [showMenu, setShowMenu] = useState(false);
+  const { state, setState, getState } = useGlobal();
+
+  const restart = () => {
+    setState('isShowBiosScreen', true);
+    setState('isLoading', false);
+    setState('isShowLoginScreen', false);
+  }
+
   return (
     <div className={styles.windowsBackground}>
       <div className='flex flex-col justify-between h-screen'>
@@ -27,9 +38,37 @@ const LoginScreen = () => {
             <div className='flex'>
                 <Image src={windowsLogo} alt='windows7' height={40} width={55}/> <p className={styles.titleFont}> Eshwar </p> <span className={styles.registedFont}>®</span>
             </div>
-            <div>
-                <Image className="mt-5" src={shutDownButton} alt='shutdown' />
-                {/* <button className={styles.powerButton}>power</button> */}
+            <div className='relative'>
+                <button 
+                  className='mt-5 hover:opacity-80 transition-opacity'
+                  onClick={() => setShowMenu(!showMenu)}
+                >
+                  <Image src={shutDownButton} alt='shutdown' />
+                </button>
+                
+                {/* Dropdown Menu */}
+                {showMenu && (
+                  <div className='absolute bottom-full right-0 mb-2 bg-white border-2 border-gray-400 rounded shadow-lg w-32 z-50'>
+                    <button
+                      className='w-full text-left px-4 py-2 text-gray-800 hover:bg-blue-500 hover:text-white transition-colors border-b border-gray-300'
+                      onClick={() => {
+                        restart();
+                        setShowMenu(false);
+                      }}
+                    >
+                      Shut down
+                    </button>
+                    <button
+                      className='w-full text-left px-4 py-2 text-gray-800 hover:bg-blue-500 hover:text-white transition-colors'
+                      onClick={() => {
+                        restart();
+                        setShowMenu(false);
+                      }}
+                    >
+                      Restart
+                    </button>
+                  </div>
+                )}
             </div>
           </div>
         </div>
