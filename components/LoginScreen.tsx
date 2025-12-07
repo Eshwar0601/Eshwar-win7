@@ -4,6 +4,7 @@ import loginImage from '@/public/assets/images/windows-bg.jpg';
 import styles from './LoginScreen.module.css';
 import floweImg from '@/public/assets/images/flower.png';
 import windowsLogo from '@/public/assets/images/windows-7-logo.png'
+import shutDownButton from '@/public/assets/images/shutdown.png';
 const LoginScreen = () => {
   return (
     <div className={styles.windowsBackground}>
@@ -26,7 +27,10 @@ const LoginScreen = () => {
             <div className='flex'>
                 <Image src={windowsLogo} alt='windows7' height={40} width={55}/> <p className={styles.titleFont}> Eshwar </p> <span className={styles.registedFont}>®</span>
             </div>
-            <div>3</div>
+            <div>
+                <Image className="mt-5" src={shutDownButton} alt='shutdown' />
+                {/* <button className={styles.powerButton}>power</button> */}
+            </div>
           </div>
         </div>
       </div>
