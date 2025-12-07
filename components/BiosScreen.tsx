@@ -113,6 +113,7 @@ const BiosScreen = () => {
                     overflowY: 'scroll',
                     scrollbarWidth: 'none', // Firefox
                     msOverflowStyle: 'none', // IE 10+
+                    fontFamily: 'Geist Mono',
                 }}
             >
                 <style>{`

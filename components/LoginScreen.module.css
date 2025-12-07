@@ -5,3 +5,21 @@
     background-size: cover;
     background-position: center;
 }
+
+.glassImage {
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    box-shadow: 
+        inset 0 0 10px rgba(255, 255, 255, 0.4),
+        inset 1px 1px 0 rgba(255, 255, 255, 0.6),
+        0 8px 16px rgba(0, 0, 0, 0.3),
+        0 2px 8px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1);
+    padding: 4px;
+}
+
+.glassImage:hover {
+    box-shadow: none;
+    cursor:pointer;
+}
