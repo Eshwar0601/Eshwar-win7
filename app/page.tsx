@@ -2,13 +2,21 @@
 
 import Image from "next/image";
 import LoadingScreen from "@/components/LoadingScreen";
-import { useLoading } from "./context/LoadingContext";
+import { useGlobal } from "./context/GlobalContext";
 import MainLayout from "@/components/MainLayout";
+import BiosScreen from "@/components/BiosScreen";
 export default function Home() {
-  const {isLoading} = useLoading();
+  const {state} = useGlobal();
   return (
     <>
-      {isLoading ? (<LoadingScreen />) : ( <MainLayout />)}
+      {
+        state.isShowBiosScreen ? (<BiosScreen />) : 
+        state.isLoading ? (<LoadingScreen />) :
+        state.isShowLoginScreen ? ( <MainLayout />) :
+        null
+      }
+      {/* {state.isSHowingBiosScreen && (<BiosScreen />) }
+      {state.isLoading ? (<LoadingScreen />) : ( <MainLayout />)} */}
     </>
   );
 }

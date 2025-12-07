@@ -2,16 +2,14 @@ import React from 'react';
 import bootImage from '@/public/assets/images/win7-boot-anim.gif';
 // import bootVideo from '@/public/assets/videos/win7-boot-anim.mp4';
 import Image from 'next/image';
-import { useLoading } from '@/app/context/LoadingContext';
+import { useGlobal } from '@/app/context/GlobalContext';
 import styles from './LoadingScreen.module.css';
 const LoadingScreen = () => {
-    const {isLoading, setIsLoading} = useLoading();
-    // setTimeout(() =>{
-    //     setIsLoading(false);
-    // }, 4330);
+    const { state, setState } = useGlobal();
 
     const handleVideoEnd = () => {
-        setIsLoading(false);
+        setState('isLoading', false);
+        setState('isShowLoginScreen', true);
     }
   return (
     <div className="flex flex-col items-center justify-between h-screen w-full bg-black text-white-700 text-xl">
