@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+"use Client";
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import loginImage from '@/public/assets/images/windows-bg.jpg';
 import styles from './LoginScreen.module.css';
@@ -6,7 +7,6 @@ import floweImg from '@/public/assets/images/flower.png';
 import windowsLogo from '@/public/assets/images/windows-7-logo.png'
 import shutDownButton from '@/public/assets/images/shutdown.png';
 import { useGlobal } from "@/app/context/GlobalContext";
-
 const LoginScreen = () => {
   const [showMenu, setShowMenu] = useState(false);
   const { state, setState, getState } = useGlobal();
@@ -17,13 +17,21 @@ const LoginScreen = () => {
     setState('isShowLoginScreen', false);
   }
 
+  const login = () => {
+    const audio = new Audio('/assets/audio/windows-7-startup.mp3');
+    audio.loop = false;
+    audio.play().catch(error => {
+        console.error("Audio playback failed:", error);
+    });
+  }
+
   return (
     <div className={styles.windowsBackground}>
       <div className='flex flex-col justify-between h-screen'>
         {/* Center content */}
         <div className='flex items-center justify-center flex-1'>
           <div className='flex flex-col items-center justify-center'>
-            <div className={styles.glassImage}>
+            <div className={styles.glassImage} onClick={login}>
               <Image src={floweImg} alt='User' width={100} height={100} />
             </div>
             <p className='text-white text-lg mt-3'>Eshwar</p>
