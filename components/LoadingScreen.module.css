@@ -1,0 +1,237 @@
+.ball{
+  width:var(--size);
+  height:var(--size);
+  border-radius:60%;
+  position:absolute;
+  border:0px solid blue;
+}
+@keyframes red{
+  20%{
+  margin-left:40px;
+  margin-top:40px;
+  transform:scale(1.2);
+  opacity:1;
+  }
+  40%{
+  margin-left:40px;
+  margin-top:0px;
+  transform:scale(2);    
+  opacity:1;
+  }
+  50%{
+  margin-left:-5px;
+  margin-top:-5px;
+  transform:scale(3.6);    
+  opacity:1;
+  }
+  65%{
+  margin-left:-5px;
+  margin-top:-5px;
+  border-radius:0.2px;
+  transform:skewx(-15deg) scale(10);
+  box-shadow:0px 0px 2px 0.5px #FF2828;
+  opacity:1; 
+  }
+  75%{
+  margin-left:-5px;
+  margin-top:-5px;
+  border-radius:0.2px;
+  transform:skewx(-15deg) scale(9);
+  box-shadow:0px 0px 2px 0.5px #FF2828;
+  opacity:1; 
+  }
+  100%{
+  margin-left:-5px;
+  margin-top:-5px;
+  border-radius:0.2px;
+  transform:skewx(-15deg) scale(11.5);
+  box-shadow:0px 0px 2.9px 1.2px #FF2828;
+  opacity:1;
+  background:radial-gradient(#FF2828,rgba(250,60,60,0.7));
+  }
+}
+@keyframes green{
+  15%{
+  margin-left:-40px;
+  margin-top:-40px;
+  transform:scale(1.2);
+  opacity:1;
+  }
+  35%{
+  margin-left:-40px;
+  margin-top:25px;
+  transform:scale(2);  
+  opacity:1;  
+  }
+  50%{
+  margin-left:5px;
+  margin-top:5px;
+  transform:scale(3.6);
+  opacity:1;  
+  }
+  65%{
+  margin-left:5px;
+  margin-top:5px;
+  border-radius:0.2px;
+  transform:skewx(-15deg) scale(10);
+  box-shadow:0px 0px 2px 0.5px limegreen; 
+  opacity:1;
+  }
+  75%{
+  margin-left:5px;
+  margin-top:5px;
+  border-radius:0.2px;
+  transform:skewx(-15deg) scale(9);
+  box-shadow:0px 0px 2px 0.5px limegreen;
+  opacity:1; 
+  }
+  100%{
+  margin-left:5px;
+  margin-top:5px;
+  border-radius:0.2px;
+  transform:skewx(-15deg) scale(11.5);
+  box-shadow:0px 0px 3px 0.5px limegreen;
+  opacity:1; 
+  }
+}
+
+@keyframes blue{
+  32%{
+  margin-left:35px;
+  margin-top:40px;
+  transform:scale(1.2);
+  opacity:1;
+  }
+  45%{
+  margin-left:-35px;
+  margin-top:40px;
+  transform:scale(2);
+  opacity:1;    
+  }
+  55%{
+  margin-left:-5px;
+  margin-top:5px;
+  transform:scale(3.6);
+  opacity:1;  
+  }
+  65%{
+  margin-left:-5px;
+  margin-top:5px;
+  border-radius:0.2px;
+  transform:skewx(-15deg) scale(10);
+  box-shadow:0px 0px 2px 0.5px #448AFF;
+  opacity:1; 
+  }
+  75%{
+  margin-left:-5px;
+  margin-top:5px;
+  border-radius:0.2px;
+  transform:skewx(-15deg) scale(9);
+  box-shadow:0px 0px 2px 0.5px #448AFF;
+  opacity:1; 
+  }
+  100%{
+  margin-left:-5px;
+  margin-top:5px;
+  border-radius:0.2px;
+  transform:skewx(-15deg) scale(11.5);
+  box-shadow:0px 0px 2.5px 1px #448AFF;
+  opacity:1; 
+  }
+}
+
+@keyframes yellow{
+  30%{
+  margin-left:-30px;
+  margin-top:-40px;
+  transform:scale(1.2);
+  opacity:1;
+  }
+  40%{
+  margin-left:0px;
+  margin-top:0px;
+  transform:scale(2);
+  opacity:1;    
+  }
+  50%{
+  margin-left:5px;
+  margin-top:15px;
+  transform:scale(3.6);
+  opacity:1;  
+  }
+  65%{
+  margin-left:5px;
+  margin-top:15px;
+  border-radius:0.2px;
+  transform:skewx(-15deg) scale(10);
+  box-shadow:0px 0px 2px 0.5px #FDD835;
+  opacity:1;
+  }
+  75%{
+  margin-left:5px;
+  margin-top:15px;
+  border-radius:0.2px;
+  transform:skewx(-15deg) scale(9);
+  box-shadow:0px 0px 2px 0.5px #FDD835;
+  opacity:1; 
+  }
+  100%{
+  margin-left:5px;
+  margin-top:15px;
+  border-radius:0.2px;
+  transform:skewx(-15deg) scale(11.5);
+  box-shadow:0px 0px 3px 0.5px #FDD835;
+  opacity:1; 
+  }
+}
+.red{
+  background:#FF2828;
+  box-shadow:var(--red-glow);
+  margin-left:-20px;
+  margin-top:-20px;
+  animation:red 5.5s linear infinite;
+  animation-fill-mode:forwards;
+  opacity:0.7;
+  transform-origin:100% 100%;
+  z-index:4;
+  animation-delay:1s;
+}
+
+.blue{
+  background:#448AFF;
+  box-shadow:var(--blue-glow);
+  margin-left:-10px;
+  margin-top:-30px;
+  animation:blue 5.5s linear infinite;
+  animation-fill-mode:forwards;
+  opacity:0.3;
+  transform-origin:100% 0%;
+  z-index:4;
+  animation-delay:1s;
+}
+
+.green{
+  background:limegreen;
+  box-shadow:var(--limegreen-glow);
+  margin-left:30px;
+  margin-top:30px;
+  animation:green 5.5s linear infinite;
+  animation-fill-mode:forwards;
+  opacity:0.7;
+  transform-origin:0% 100%;
+  z-index:3;
+  animation-delay:1s;
+}
+
+.yellow{
+  background:#FDD835;
+  box-shadow:var(--yellow-glow);
+  margin-left:10px;
+  margin-top:30px;
+  animation:yellow 5.5s linear infinite;
+  animation-fill-mode:forwards;
+  opacity:0;
+  transform-origin:0% 0%;
+  z-index:3;
+  animation-delay:1s;
+}
