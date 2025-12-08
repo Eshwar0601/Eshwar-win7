@@ -1,0 +1,7 @@
+.windowsBackground {
+    width: 100%;
+    height: 100vh;
+    background-image: url('/assets/images/windows-7-home.jpg');
+    background-size: cover;
+    background-position: center;
+}

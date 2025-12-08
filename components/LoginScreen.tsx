@@ -7,9 +7,11 @@ import floweImg from '@/public/assets/images/flower.png';
 import windowsLogo from '@/public/assets/images/windows-7-logo.png'
 import shutDownButton from '@/public/assets/images/shutdown.png';
 import { useGlobal } from "@/app/context/GlobalContext";
+import HomeScreen from './HomeScreen';
 const LoginScreen = () => {
   const [showMenu, setShowMenu] = useState(false);
   const { state, setState, getState } = useGlobal();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const restart = () => {
     setState('isShowBiosScreen', true);
@@ -18,16 +20,19 @@ const LoginScreen = () => {
   }
 
   const login = () => {
-    const audio = new Audio('/assets/audio/windows-7-startup.mp3');
-    audio.loop = false;
-    audio.play().catch(error => {
-        console.error("Audio playback failed:", error);
-    });
+    setTimeout(() => {
+      const audio = new Audio('/assets/audio/windows-7-startup.mp3');
+      audio.loop = false;
+      audio.play().catch(error => {
+          console.error("Audio playback failed:", error);
+      });
+    }, 400)
+    setIsLoggedIn(true);
   }
 
   return (
     <div className={styles.windowsBackground}>
-      <div className='flex flex-col justify-between h-screen'>
+      {!isLoggedIn && (<div className='flex flex-col justify-between h-screen'>
         {/* Center content */}
         <div className='flex items-center justify-center flex-1'>
           <div className='flex flex-col items-center justify-center'>
@@ -80,7 +85,8 @@ const LoginScreen = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div>)}
+      {isLoggedIn && (<HomeScreen />)}
     </div>
   )
 }
