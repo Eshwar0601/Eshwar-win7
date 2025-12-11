@@ -5,6 +5,8 @@ import hoverStartMenuIcon from '@/public/assets/images/windows-7-start-hover.png
 import soundIcon from '@/public/assets/images/sound-icon.png';
 import Image from 'next/image';
 import TaskBar from './TaskBar';
+import PDFIcon from '@/public/assets/images/pdf.png';
+import MailIcon from '@/public/assets/images/email-icon.png';
 
 const HomeScreen = () => {
   const [hover, setHover] = useState(false);
@@ -29,9 +31,39 @@ const HomeScreen = () => {
     };
   }, [isShowStartMenu]);
 
+  const desktopIcons = [
+    {
+      name: "Resume",
+      src: PDFIcon,
+    },
+    {
+      name: "Contact Me",
+      src: MailIcon,
+    },
+  ];
+
   return (
     <div className={styles.windowsBackground} ref={containerRef}>
       <div ref={taskbarRef}>
+        <div className="absolute top-4 left-4 flex flex-col gap-4 select-none">
+          {desktopIcons.map((icon : any, index : any) => (
+            <div
+              key={index}
+              // className={!hover ? "group flex flex-col items-center cursor-pointer w-20" : "group flex flex-col items-center cursor-pointer w-20 desktop-icon rounded-md group-hover:opacity-100 transition-opacity bg-gradient-to-b from-[#7eb6f6cc] to-[#4a84dacc] border border-[#9fc3f7]/40 "}
+              className={`group flex flex-col items-center cursor-pointer w-25 h-25 ${styles.desktopIcon}`}
+              onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
+            >
+              <Image width={52} height={52} src={icon.src} alt={icon.name} />
+                <span
+                  className="text-white text-sm text-center mt-1 px-1 
+                  group-hover:bg-blue-600/60 group-hover:rounded-sm"
+                >
+                  {icon.name}
+                </span>
+            </div>
+          ))}
+
+        </div>
         <TaskBar isShowStartMenu={isShowStartMenu} setShowStartMenu={setShowStartMenu} />
       </div>
     </div>
