@@ -7,6 +7,8 @@ import Image from 'next/image';
 import TaskBar from './TaskBar';
 import PDFIcon from '@/public/assets/images/pdf.png';
 import MailIcon from '@/public/assets/images/email-icon.png';
+import intnetExplorerImage from '@/public/assets/images/internet-explorer.png';
+import myComputerIcon from '@/public/assets/images/my-computer.png';
 
 const HomeScreen = () => {
   const [hover, setHover] = useState(false);
@@ -33,12 +35,20 @@ const HomeScreen = () => {
 
   const desktopIcons = [
     {
+      name: "About Me",
+      src: myComputerIcon,
+    },
+    {
       name: "Resume",
       src: PDFIcon,
     },
     {
       name: "Contact Me",
       src: MailIcon,
+    },
+    {
+      name: "My Projects",
+      src: intnetExplorerImage,
     },
   ];
 
@@ -55,8 +65,7 @@ const HomeScreen = () => {
             >
               <Image width={52} height={52} src={icon.src} alt={icon.name} />
                 <span
-                  className="text-white text-sm text-center mt-1 px-1 
-                  group-hover:bg-blue-600/60 group-hover:rounded-sm"
+                  className="text-white text-sm text-center mt-1 px-1"
                 >
                   {icon.name}
                 </span>
