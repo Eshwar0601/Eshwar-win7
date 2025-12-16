@@ -9,10 +9,12 @@ import PDFIcon from '@/public/assets/images/pdf.png';
 import MailIcon from '@/public/assets/images/email-icon.png';
 import intnetExplorerImage from '@/public/assets/images/internet-explorer.png';
 import myComputerIcon from '@/public/assets/images/my-computer.png';
+import Explorer from './Explorer';
 
 const HomeScreen = () => {
   const [hover, setHover] = useState(false);
   const [isShowStartMenu, setShowStartMenu] = useState(false);
+  const [isShowFileExplorer, setIsShowFileExplorer] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const taskbarRef = useRef<HTMLDivElement>(null);
 
@@ -52,6 +54,10 @@ const HomeScreen = () => {
     },
   ];
 
+  const openFileExplorer = (icon : any) : any  => {
+    setIsShowFileExplorer(true);
+  }
+
   return (
     <div className={styles.windowsBackground} ref={containerRef}>
       <div ref={taskbarRef}>
@@ -62,6 +68,7 @@ const HomeScreen = () => {
               // className={!hover ? "group flex flex-col items-center cursor-pointer w-20" : "group flex flex-col items-center cursor-pointer w-20 desktop-icon rounded-md group-hover:opacity-100 transition-opacity bg-gradient-to-b from-[#7eb6f6cc] to-[#4a84dacc] border border-[#9fc3f7]/40 "}
               className={`group flex flex-col items-center cursor-pointer w-25 h-25 ${styles.desktopIcon}`}
               onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
+              onDoubleClick={() => openFileExplorer(icon)}
             >
               <Image width={52} height={52} src={icon.src} alt={icon.name} />
                 <span
@@ -75,6 +82,7 @@ const HomeScreen = () => {
         </div>
         <TaskBar isShowStartMenu={isShowStartMenu} setShowStartMenu={setShowStartMenu} />
       </div>
+      {isShowFileExplorer && <Explorer setIsShowFileExplorer={setIsShowFileExplorer} />}
     </div>
   )
 }
