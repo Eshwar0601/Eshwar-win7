@@ -10,13 +10,19 @@ import MailIcon from '@/public/assets/images/email-icon.png';
 import intnetExplorerImage from '@/public/assets/images/internet-explorer.png';
 import myComputerIcon from '@/public/assets/images/my-computer.png';
 import Explorer from './Explorer';
+import LoaderDialog from './LoaderDialog';
 
 const HomeScreen = () => {
   const [hover, setHover] = useState(false);
   const [isShowStartMenu, setShowStartMenu] = useState(false);
   const [isShowFileExplorer, setIsShowFileExplorer] = useState(false);
+  const [isShowLoader, setShowLoader] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
   const taskbarRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setShowLoader(true);
+  }, [])
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -83,6 +89,7 @@ const HomeScreen = () => {
         <TaskBar isShowStartMenu={isShowStartMenu} setShowStartMenu={setShowStartMenu} />
       </div>
       {isShowFileExplorer && <Explorer setIsShowFileExplorer={setIsShowFileExplorer} />}
+      {isShowLoader && <LoaderDialog setShowLoader={setShowLoader} />}
     </div>
   )
 }
