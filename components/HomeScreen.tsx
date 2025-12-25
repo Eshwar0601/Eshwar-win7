@@ -70,7 +70,10 @@ const HomeScreen = () => {
     if(icon.name === 'Resume') {
       setDialogConfig(icon)
     }
-    setListOfWindowsOpened((prevList : any) => [...prevList, icon]);
+    const isWWindowOpen :any = listOfWindowsOpened.findIndex((data : any) => String(data['name']) === String(icon['name']));
+    if(isWWindowOpen === -1) {
+      setListOfWindowsOpened((prevList : any) => [...prevList, icon]);
+    }
     setIsShowFileExplorer(true);
   }
 
@@ -96,7 +99,7 @@ const HomeScreen = () => {
           ))}
 
         </div>
-        <TaskBar isShowStartMenu={isShowStartMenu} setShowStartMenu={setShowStartMenu} listOfWindowsOpened={listOfWindowsOpened} setListOfWindowsOpened={setListOfWindowsOpened} />
+        <TaskBar isShowStartMenu={isShowStartMenu} setShowStartMenu={setShowStartMenu} listOfWindowsOpened={listOfWindowsOpened} setListOfWindowsOpened={setListOfWindowsOpened} isShowFileExplorer={isShowFileExplorer} setIsShowFileExplorer={setIsShowFileExplorer} />
       </div>
       {isShowFileExplorer && <Explorer setIsShowFileExplorer={setIsShowFileExplorer} dialogConfig={dialogConfig} setDialogConfig={setDialogConfig} listOfWindowsOpened={listOfWindowsOpened} setListOfWindowsOpened={setListOfWindowsOpened} />}
       {isShowLoader && <LoaderDialog setShowLoader={setShowLoader} />}

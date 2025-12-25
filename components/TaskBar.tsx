@@ -10,7 +10,7 @@ import gitHubIcon from '@/public/assets/images/github.png';
 import linkedIn from '@/public/assets/images/linkedin.png';
 import styles from './TaskBar.module.css';
 
-const TaskBar = ({isShowStartMenu, setShowStartMenu, listOfWindowsOpened, setListOfWindowsOpened}: any) => {
+const TaskBar = ({isShowStartMenu, setShowStartMenu, listOfWindowsOpened, setListOfWindowsOpened, isShowFileExplorer, setIsShowFileExplorer}: any) => {
     const [hover, setHover] = useState(false);
     const leftSidePrograms : any = [
         { name: "My Projects", icon: intnetExplorerImage },
@@ -22,6 +22,11 @@ const TaskBar = ({isShowStartMenu, setShowStartMenu, listOfWindowsOpened, setLis
     const rightSideMenu : any = [
         { name: "My Projects", icon: intnetExplorerImage }
     ]
+
+
+    const minimizeOrMaximizeWindow : any = () =>{
+        setIsShowFileExplorer(() => !isShowFileExplorer);
+    }
     return (
         <div>
             {isShowStartMenu &&(<div className="
@@ -89,9 +94,9 @@ const TaskBar = ({isShowStartMenu, setShowStartMenu, listOfWindowsOpened, setLis
             </div>)}
             <footer>
                 <div className="fixed bottom-0 left-0 right-0 h-10 
-      bg-gradient-to-b from-[#5fa5d7] to-[#276c9a] 
-      shadow-[0_-2px_6px_rgba(0,0,0,0.4)] 
-      border-t border-[#0f4f73] flex items-center select-none">
+                    bg-gradient-to-b from-[#5fa5d7] to-[#276c9a] 
+                    shadow-[0_-2px_6px_rgba(0,0,0,0.4)] 
+                    border-t border-[#0f4f73] flex items-center select-none">
 
                     {/* LEFT: Start Button */}
                     <div className="h-full flex items-center px-3">
@@ -106,12 +111,13 @@ const TaskBar = ({isShowStartMenu, setShowStartMenu, listOfWindowsOpened, setLis
                     <div className="flex-1 h-full flex items-center gap-2 px-2 overflow-x-auto">
                         {/* Example task item */}
                         {/* middle section */}
-                        <div>
+                        <div className="flex flex-row gap-1">
                             {
                                 listOfWindowsOpened.map((icon :any, index : any) => (
                                     // <div className='bg-black text-white'>{index}</div>
                                     <div
-                                        className={`group flex flex-col items-center cursor-pointer px-4 py-1 ${styles.desktopIcon}`}
+                                        className={`items-center cursor-pointer px-4 py-1 ${styles.desktopIcon}`}
+                                        onClick={() => minimizeOrMaximizeWindow()}
                                         key={index}
                                         >
                                         <Image width={23} height={25} src={icon.src} alt={icon.name} />
