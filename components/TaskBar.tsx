@@ -8,8 +8,9 @@ import emailIcon from '@/public/assets/images/email-icon.png';
 import myComputerIcon from '@/public/assets/images/my-computer.png';
 import gitHubIcon from '@/public/assets/images/github.png';
 import linkedIn from '@/public/assets/images/linkedin.png';
+import styles from './TaskBar.module.css';
 
-const TaskBar = ({isShowStartMenu, setShowStartMenu}: any) => {
+const TaskBar = ({isShowStartMenu, setShowStartMenu, listOfWindowsOpened, setListOfWindowsOpened}: any) => {
     const [hover, setHover] = useState(false);
     const leftSidePrograms : any = [
         { name: "My Projects", icon: intnetExplorerImage },
@@ -104,11 +105,20 @@ const TaskBar = ({isShowStartMenu, setShowStartMenu}: any) => {
                     {/* MIDDLE: Taskbar Items */}
                     <div className="flex-1 h-full flex items-center gap-2 px-2 overflow-x-auto">
                         {/* Example task item */}
-                        {/* <div className="h-9 min-w-[120px] bg-gradient-to-b 
-          from-[#d7e9f9] to-[#b7d5ef] rounded-lg shadow 
-          border border-[#8fb4d1] px-3 flex items-center text-sm text-black">
-              App Window */}
-                        {/* </div> */}
+                        {/* middle section */}
+                        <div>
+                            {
+                                listOfWindowsOpened.map((icon :any, index : any) => (
+                                    // <div className='bg-black text-white'>{index}</div>
+                                    <div
+                                        className={`group flex flex-col items-center cursor-pointer px-4 py-1 ${styles.desktopIcon}`}
+                                        key={index}
+                                        >
+                                        <Image width={23} height={25} src={icon.src} alt={icon.name} />
+                                    </div>
+                                ))
+                            }
+                        </div>
                     </div>
 
                     {/* RIGHT: System Tray */}

@@ -22,7 +22,8 @@ const HomeScreen = () => {
   const [dialogConfig, setDialogConfig] : any= useState({
     type: "",
     content: ""
-  })
+  });
+  const [listOfWindowsOpened, setListOfWindowsOpened] : any = useState([]);
 
   useEffect(() => {
     setShowLoader(true);
@@ -67,11 +68,9 @@ const HomeScreen = () => {
 
   const openFileExplorer = (icon : any) : any  => {
     if(icon.name === 'Resume') {
-      setDialogConfig({
-        type : "PDF",
-        content: ""
-      })
+      setDialogConfig(icon)
     }
+    setListOfWindowsOpened((prevList : any) => [...prevList, icon]);
     setIsShowFileExplorer(true);
   }
 
@@ -97,9 +96,9 @@ const HomeScreen = () => {
           ))}
 
         </div>
-        <TaskBar isShowStartMenu={isShowStartMenu} setShowStartMenu={setShowStartMenu} />
+        <TaskBar isShowStartMenu={isShowStartMenu} setShowStartMenu={setShowStartMenu} listOfWindowsOpened={listOfWindowsOpened} setListOfWindowsOpened={setListOfWindowsOpened} />
       </div>
-      {isShowFileExplorer && <Explorer setIsShowFileExplorer={setIsShowFileExplorer} dialogConfig={dialogConfig} setDialogConfig={setDialogConfig} />}
+      {isShowFileExplorer && <Explorer setIsShowFileExplorer={setIsShowFileExplorer} dialogConfig={dialogConfig} setDialogConfig={setDialogConfig} listOfWindowsOpened={listOfWindowsOpened} setListOfWindowsOpened={setListOfWindowsOpened} />}
       {isShowLoader && <LoaderDialog setShowLoader={setShowLoader} />}
     </div>
   )
