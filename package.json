@@ -9,6 +9,13 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@embedpdf/core": "^2.0.0",
+    "@embedpdf/engines": "^2.0.0",
+    "@embedpdf/plugin-document-manager": "^2.0.0",
+    "@embedpdf/plugin-render": "^2.0.0",
+    "@embedpdf/plugin-scroll": "^2.0.0",
+    "@embedpdf/plugin-viewport": "^2.0.0",
+    "@embedpdf/plugin-zoom": "^2.0.0",
     "next": "16.0.7",
     "react": "19.2.0",
     "react-dom": "19.2.0"

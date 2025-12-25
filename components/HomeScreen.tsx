@@ -19,6 +19,10 @@ const HomeScreen = () => {
   const [isShowLoader, setShowLoader] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
   const taskbarRef = useRef<HTMLDivElement>(null);
+  const [dialogConfig, setDialogConfig] : any= useState({
+    type: "",
+    content: ""
+  })
 
   useEffect(() => {
     setShowLoader(true);
@@ -60,7 +64,14 @@ const HomeScreen = () => {
     },
   ];
 
+
   const openFileExplorer = (icon : any) : any  => {
+    if(icon.name === 'Resume') {
+      setDialogConfig({
+        type : "PDF",
+        content: ""
+      })
+    }
     setIsShowFileExplorer(true);
   }
 
@@ -88,7 +99,7 @@ const HomeScreen = () => {
         </div>
         <TaskBar isShowStartMenu={isShowStartMenu} setShowStartMenu={setShowStartMenu} />
       </div>
-      {isShowFileExplorer && <Explorer setIsShowFileExplorer={setIsShowFileExplorer} />}
+      {isShowFileExplorer && <Explorer setIsShowFileExplorer={setIsShowFileExplorer} dialogConfig={dialogConfig} setDialogConfig={setDialogConfig} />}
       {isShowLoader && <LoaderDialog setShowLoader={setShowLoader} />}
     </div>
   )
