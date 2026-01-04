@@ -11,6 +11,10 @@ import intnetExplorerImage from '@/public/assets/images/internet-explorer.png';
 import myComputerIcon from '@/public/assets/images/my-computer.png';
 import Explorer from './Explorer';
 import LoaderDialog from './LoaderDialog';
+import { PDFViewer } from './PDFViewer';
+import AboutMe from './AboutMe';
+import ContactMe from './ContactMe';
+import MyProjects from './MyProjects';
 
 const HomeScreen = () => {
   const [hover, setHover] = useState(false);
@@ -45,36 +49,47 @@ const HomeScreen = () => {
       document.removeEventListener('click', handleClickOutside);
     };
   }, [isShowStartMenu]);
-
-  const desktopIcons = [
+  const [desktopIcons, setDesktopIcons] = useState([
     {
       name: "About Me",
       src: myComputerIcon,
+      component: AboutMe,
+      isShowExplorer : false
     },
     {
       name: "Resume",
       src: PDFIcon,
+      component: PDFViewer,
+      isShowExplorer : false
     },
     {
       name: "Contact Me",
       src: MailIcon,
+      component: ContactMe,
+      isShowExplorer : false
     },
     {
       name: "My Projects",
       src: intnetExplorerImage,
+      component: MyProjects,
+      isShowExplorer : false
     },
-  ];
+  ]);
+
+  // const desktopIcons = ;
 
 
   const openFileExplorer = (icon : any) : any  => {
-    if(icon.name === 'Resume') {
-      setDialogConfig(icon)
-    }
+    // if(icon.name === 'Resume') {
+    //   setDialogConfig(icon)
+    // }
     const isWWindowOpen :any = listOfWindowsOpened.findIndex((data : any) => String(data['name']) === String(icon['name']));
     if(isWWindowOpen === -1) {
       setListOfWindowsOpened((prevList : any) => [...prevList, icon]);
     }
-    setIsShowFileExplorer(true);
+    // icon.isShowExplorer = true;
+    setDesktopIcons((prevData : any) => prevData.map((singleIcon : any) => singleIcon['name'] === icon['name'] ? {...singleIcon, isShowExplorer: true} : singleIcon))
+
   }
 
   return (
@@ -99,9 +114,10 @@ const HomeScreen = () => {
           ))}
 
         </div>
-        <TaskBar isShowStartMenu={isShowStartMenu} setShowStartMenu={setShowStartMenu} listOfWindowsOpened={listOfWindowsOpened} setListOfWindowsOpened={setListOfWindowsOpened} isShowFileExplorer={isShowFileExplorer} setIsShowFileExplorer={setIsShowFileExplorer} />
+        <TaskBar setDesktopIcons={setDesktopIcons} isShowStartMenu={isShowStartMenu} setShowStartMenu={setShowStartMenu} listOfWindowsOpened={listOfWindowsOpened} setListOfWindowsOpened={setListOfWindowsOpened} />
       </div>
-      {isShowFileExplorer && <Explorer setIsShowFileExplorer={setIsShowFileExplorer} dialogConfig={dialogConfig} setDialogConfig={setDialogConfig} listOfWindowsOpened={listOfWindowsOpened} setListOfWindowsOpened={setListOfWindowsOpened} />}
+      {desktopIcons.map((singleWindow : any, index : number) => (singleWindow.isShowExplorer && <Explorer key={index} desktopIcons={desktopIcons} setDesktopIcons={setDesktopIcons} windowConfig={singleWindow} listOfWindowsOpened={listOfWindowsOpened} setListOfWindowsOpened={setListOfWindowsOpened} />))}
+      {/* {isShowFileExplorer && <Explorer setIsShowFileExplorer={setIsShowFileExplorer} dialogConfig={dialogConfig} setDialogConfig={setDialogConfig} listOfWindowsOpened={listOfWindowsOpened} setListOfWindowsOpened={setListOfWindowsOpened} />} */}
       {isShowLoader && <LoaderDialog setShowLoader={setShowLoader} />}
     </div>
   )

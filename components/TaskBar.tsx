@@ -10,7 +10,7 @@ import gitHubIcon from '@/public/assets/images/github.png';
 import linkedIn from '@/public/assets/images/linkedin.png';
 import styles from './TaskBar.module.css';
 
-const TaskBar = ({isShowStartMenu, setShowStartMenu, listOfWindowsOpened, setListOfWindowsOpened, isShowFileExplorer, setIsShowFileExplorer}: any) => {
+const TaskBar = ({isShowStartMenu, setShowStartMenu, listOfWindowsOpened, setListOfWindowsOpened, setDesktopIcons}: any) => {
     const [hover, setHover] = useState(false);
     const leftSidePrograms : any = [
         { name: "My Projects", icon: intnetExplorerImage },
@@ -24,8 +24,9 @@ const TaskBar = ({isShowStartMenu, setShowStartMenu, listOfWindowsOpened, setLis
     ]
 
 
-    const minimizeOrMaximizeWindow : any = () =>{
-        setIsShowFileExplorer(() => !isShowFileExplorer);
+    const minimizeOrMaximizeWindow : any = (icon :any) =>{
+        setListOfWindowsOpened((prevData : any) => prevData.map((singleIcon : any) => singleIcon['name'] === icon['name'] ? {...singleIcon, isShowExplorer : !icon['isShowExplorer']}: singleIcon));
+        setDesktopIcons((prevData : any) => prevData.map((singleIcon : any) => singleIcon['name'] === icon['name'] ? {...singleIcon, isShowExplorer : !icon['isShowExplorer']}: singleIcon));
     }
     return (
         <div>
@@ -117,7 +118,7 @@ const TaskBar = ({isShowStartMenu, setShowStartMenu, listOfWindowsOpened, setLis
                                     // <div className='bg-black text-white'>{index}</div>
                                     <div
                                         className={`items-center cursor-pointer px-4 py-1 ${styles.desktopIcon}`}
-                                        onClick={() => minimizeOrMaximizeWindow()}
+                                        onClick={() => minimizeOrMaximizeWindow(icon)}
                                         key={index}
                                         >
                                         <Image width={23} height={25} src={icon.src} alt={icon.name} />

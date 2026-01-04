@@ -4,20 +4,30 @@ import { PDFViewer } from './PDFViewer'
 
 
 
-const Explorer = ({setIsShowFileExplorer, dialogConfig, setDialogConfig, listOfWindowsOpened, setListOfWindowsOpened} : any) => {
+const Explorer = ({desktopIcons, windowConfig, setDesktopIcons, setListOfWindowsOpened} : any) => {
     const pdfPath : any = "public/assets/pdf/Eshwar_Esarapu.pdf"
 
     const closeExplorer = () => {
-        setDialogConfig({
-            name : "",
-            src: ""
-        });
-        setListOfWindowsOpened((data : any) => data.filter((item : any) => String(item['name']) !== String(dialogConfig['name'])))
-        setIsShowFileExplorer(false);
+        // setDialogConfig({
+        //     name : "",
+        //     src: ""
+        // });
+        // setListOfWindowsOpened((data : any) => data.filter((item : any) => String(item['name']) !== String(dialogConfig['name'])));
+        setDesktopIcons((prevData : any) => prevData.map((singleIcon : any) => singleIcon['name'] === windowConfig['name'] ? {...singleIcon, isShowExplorer: false} : singleIcon));
+        setListOfWindowsOpened((prevData :any) => prevData.filter((singleIcon : any) => singleIcon['name'] !== windowConfig['name']));
+        // const curentWindowIndex : any = desktopIcons.findIndex((singleItem : any) => singleItem['name'] === windowConfig['name']);
+        // if(curentWindowIndex !== -1) {
+        //     desktopIcons[curentWindowIndex].isShowExplorer = false;
+        // }
     }
 
     const minimizeWindow = () => {
-        setIsShowFileExplorer(false);
+        // const curentWindowIndex : any = desktopIcons.findIndex((singleItem : any) => singleItem['name'] === windowConfig['name']);
+        // if(curentWindowIndex !== -1) {
+        //     desktopIcons[curentWindowIndex].isShowExplorer = false;
+        // }
+        setDesktopIcons((prevData : any) => prevData.map((singleIcon : any) => singleIcon['name'] === windowConfig['name'] ? {...singleIcon, isShowExplorer: false} : singleIcon))
+
     }
     return (
         <div>
@@ -31,7 +41,7 @@ const Explorer = ({setIsShowFileExplorer, dialogConfig, setDialogConfig, listOfW
                     </div>
                 </div>
                 <div className="window-body has-space" style={{ height: 'calc(100vh - 80px)'}}>
-                    {dialogConfig.name === "Resume" &&(<PDFViewer />)}
+                    <windowConfig.component/>
                 </div>
             </div>
         </div>
